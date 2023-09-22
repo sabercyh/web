@@ -1,0 +1,216 @@
+definitions:
+  app.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      msg:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: An example of gin
+  license:
+    name: MIT
+    url: https://github.com/EDDYCJY/go-gin-example/blob/master/LICENSE
+  termsOfService: https://github.com/EDDYCJY/go-gin-example
+  title: Golang Gin API
+  version: "1.0"
+paths:
+  /api/v1/articles:
+    get:
+      parameters:
+      - description: TagID
+        in: body
+        name: tag_id
+        schema:
+          type: integer
+      - description: State
+        in: body
+        name: state
+        schema:
+          type: integer
+      - description: CreatedBy
+        in: body
+        name: created_by
+        schema:
+          type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: Get multiple articles
+    post:
+      parameters:
+      - description: TagID
+        in: body
+        name: tag_id
+        required: true
+        schema:
+          type: integer
+      - description: Title
+        in: body
+        name: title
+        required: true
+        schema:
+          type: string
+      - description: Desc
+        in: body
+        name: desc
+        required: true
+        schema:
+          type: string
+      - description: Content
+        in: body
+        name: content
+        required: true
+        schema:
+          type: string
+      - description: CreatedBy
+        in: body
+        name: created_by
+        required: true
+        schema:
+          type: string
+      - description: State
+        in: body
+        name: state
+        required: true
+        schema:
+          type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: Add article
+  /api/v1/articles/{id}:
+    delete:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: Delete article
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: Get a single article
+    put:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: TagID
+        in: body
+        name: tag_id
+        schema:
+          type: string
+      - description: Title
+        in: body
+        name: title
+        schema:
+          type: string
+      - description: Desc
+        in: body
+        name: desc
+        schema:
+          type: string
+      - description: Content
+        in: body
+        name: content
+        schema:
+          type: string
+      - description: ModifiedBy
+        in: body
+        name: modified_by
+        required: true
+        schema:
+          type: string
+      - description: State
+        in: body
+        name: state
+        schema:
+          type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: Update article
+  /auth:
+    get:
+      parameters:
+      - description: userName
+        in: body
+        name: username
+        required: true
+        schema:
+          type: string
+      - description: password
+        in: body
+        name: password
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: Get Auth
+swagger: "2.0"
